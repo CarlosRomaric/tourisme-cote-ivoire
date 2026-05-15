@@ -1,0 +1,100 @@
+name: Auto PR → Master
+
+# Se déclenche sur chaque push vers une branche autre que master
+on:
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  auto-pull-request:
+    name: Créer et fusionner la PR vers master
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Historique complet pour git log
+
+      - name: Créer la Pull Request
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="${{ github.ref_name }}"
+
+          # Vérifier si une PR ouverte existe déjà pour éviter les doublons
+          PR_NUMBER=$(gh pr list \
+            --head "$BRANCH" \
+            --base master \
+            --state open \
+            --json number \
+            --jq '.[0].number // empty')
+
+          if [ -n "$PR_NUMBER" ]; then
+            echo "PR #$PR_NUMBER déjà ouverte pour '$BRANCH' — mise à jour ignorée."
+          else
+            # Lister les commits entre cette branche et master
+            COMMITS=$(git log origin/master..HEAD --oneline 2>/dev/null \
+              | head -15 \
+              | sed 's/^/- /' \
+              || echo "- (aucun commit détecté)")
+
+            # Générer le corps de la PR dans un fichier temporaire
+            cat > /tmp/pr-body.md << EOF
+          ## Pull Request automatique
+
+          | Champ | Valeur |
+          |---|---|
+          | **Branche source** | \`$BRANCH\` |
+          | **Cible** | \`master\` |
+          | **Auteur** | @${{ github.actor }} |
+          | **Commit déclencheur** | \`${{ github.sha }}\` |
+
+          ### Commits inclus
+          ${COMMITS}
+
+          ---
+          *Pull Request créée automatiquement par GitHub Actions suite au push sur \`$BRANCH\`.*
+          EOF
+
+            PR_URL=$(gh pr create \
+              --title "Merge \`$BRANCH\` → master" \
+              --body-file /tmp/pr-body.md \
+              --base master \
+              --head "$BRANCH")
+
+            PR_NUMBER=$(echo "$PR_URL" | grep -oE '[0-9]+$')
+            echo "PR #$PR_NUMBER créée : $PR_URL"
+          fi
+
+          echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+
+      # L'approbation nécessite un PAT (Personal Access Token) car GitHub
+      # interdit l'auto-approbation avec le GITHUB_TOKEN natif.
+      # → Créer un secret "PAT_TOKEN" dans Settings > Secrets > Actions
+      - name: Approuver la Pull Request
+        if: steps.pr.outputs.number != ''
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          gh pr review "${{ steps.pr.outputs.number }}" \
+            --approve \
+            --body "Approuvée automatiquement par le workflow CI."
+        continue-on-error: true  # N'échoue pas si PAT_TOKEN absent
+
+      - name: Fusionner la Pull Request
+        if: steps.pr.outputs.number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge "${{ steps.pr.outputs.number }}" \
+            --merge \
+            --delete-branch \
+            --subject "Merge automatique : ${{ github.ref_name }} → master"
+        # Si des règles de protection de branche bloquent la fusion,
+        # remplacez GITHUB_TOKEN par PAT_TOKEN (admin du dépôt)
