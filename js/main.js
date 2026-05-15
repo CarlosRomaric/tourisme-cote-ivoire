@@ -185,6 +185,116 @@ const destinationData = {
     ]
   },
 
+  // --- CULTURE & TRADITIONS ---
+  masques: {
+    icon: '🎭',
+    bgClass: 'bg-yellow',
+    title: 'Les Masques sacrés',
+    subtitle: 'Patrimoine vivant — Art rituel et spiritualité des peuples ivoiriens',
+    description: 'Les masques ivoiriens ne sont pas de simples objets d\'art : ce sont des entités spirituelles vivantes. Chaque masque incarne un esprit, un ancêtre ou une force de la nature. Sculptés dans des bois précieux et ornés de matières naturelles, ils sont au cœur des cérémonies initiatiques, funéraires et de fertilité des peuples Dan, Baoulé, Sénoufo et Wé.',
+    labels: {
+      sights:     '🎭 Masques emblématiques',
+      activities: '🌟 Cérémonies & rituels',
+      bestTime:   '🌍 Peuples & origines',
+      practical:  '📍 Où les découvrir'
+    },
+    sights: [
+      'Masque Dan (Yacouba) — masque coureur, gardien de la paix',
+      'Masque Baoulé — masque de danse d\'une grande finesse',
+      'Masque Kpélié (Sénoufo) — masque initiatique de la société Poro',
+      'Masque Gou (Wé/Guéré) — masque guerrier de l\'Ouest forestier',
+      'Masque Do (Dioula) — masque de protection communautaire',
+      'Masque Gbain — masque féminin de guérison'
+    ],
+    activities: [
+      'Danses des masques lors des fêtes villageoises (saison sèche)',
+      'Fête des Masques de Man — manifestation annuelle incontournable',
+      'Funérailles traditionnelles — sortie des masques ancestraux',
+      'Cérémonie d\'initiation Poro chez les Sénoufo (réservée aux initiés)',
+      'Atelier de sculpture de masques avec artisans Dan à Man'
+    ],
+    bestTime: 'Masques Dan et Guéré à l\'Ouest (Man, Man), Baoulé au Centre (Bouaké, Yamoussoukro), Sénoufo au Nord (Korhogo). Plus de 60 ethnies avec leurs propres masques et rites sacrés.',
+    practical: [
+      'Musée des Civilisations d\'Abidjan — plus grande collection nationale',
+      'Village de Man — artisans Dan et cérémonies authentiques',
+      'Marché des artisans de Korhogo — masques Sénoufo et bronzes',
+      'Galeries d\'art de Cocody (Abidjan) — pièces certifiées authentiques'
+    ]
+  },
+
+  musique: {
+    icon: '🎶',
+    bgClass: 'bg-orange',
+    title: 'Coupé-Décalé & Zouglou',
+    subtitle: 'Rythmes d\'Abidjan — Deux genres nés en Côte d\'Ivoire qui ont conquis l\'Afrique',
+    description: 'La Côte d\'Ivoire est l\'un des pays africains les plus influents sur la scène musicale mondiale. Le Zouglou, né dans les années 1990 dans les cités universitaires d\'Abidjan, porte les revendications sociales avec humour et dérision. Le Coupé-Décalé, explosif et festif, a conquis toute l\'Afrique francophone depuis les années 2000, né dans les boîtes de nuit parisiennes de la diaspora ivoirienne.',
+    labels: {
+      sights:     '🎵 Genres & artistes clés',
+      activities: '🌟 Expériences musicales',
+      bestTime:   '🌍 Histoire & origines',
+      practical:  '📍 Où vivre la scène'
+    },
+    sights: [
+      'Zouglou — né à l\'Université de Cocody, Abidjan (années 1990)',
+      'Coupé-Décalé — créé par Douk Saga et La Jet Set à Paris (2002)',
+      'Magic System — ambassadeurs mondiaux, "Premier Gaou" (2002)',
+      'DJ Arafat — légende incontestée du Coupé-Décalé (1986–2019)',
+      'Afrobeats ivoirien — Serge Beynaud, Josey, Siro',
+      'Nouchi — argot abidjanais omniprésent dans les paroles'
+    ],
+    activities: [
+      'Soirées dansantes dans les boîtes de nuit de Cocody et Zone 4',
+      'Concert live au Palais de la Culture d\'Abidjan (Avenue Terrasson)',
+      'Festival MASA — Marché des Arts du Spectacle d\'Abidjan (mars–avril)',
+      'Danser le Coupé-Décalé avec les locaux dans un maquis animé',
+      'Visite des studios d\'enregistrement à Yopougon'
+    ],
+    bestTime: 'Le Zouglou émerge en 1990 des campus comme cri social estudiantin. Le Coupé-Décalé naît en 2002 dans la diaspora ivoirienne à Paris avant de conquérir l\'Afrique entière via les vidéoclips.',
+    practical: [
+      'Maquis musicaux à Treichville et Yopougon — animations tous les soirs',
+      'Palais de la Culture — concerts et galas de grande envergure',
+      'Festival MASA (années paires, mars–avril) — vitrine africaine du spectacle',
+      'NCI TV et Trace Africa — émissions musicales ivoiriennes à suivre'
+    ]
+  },
+
+  villages: {
+    icon: '🏘️',
+    bgClass: 'bg-green',
+    title: 'Villages traditionnels',
+    subtitle: 'Plus de 60 ethnies — Une mosaïque culturelle vivante et préservée',
+    description: 'La Côte d\'Ivoire abrite plus de 60 groupes ethniques répartis en quatre grandes familles : Akan, Gour (Sénoufo/Voltaïque), Krou et Mandé. Visiter un village traditionnel, c\'est traverser les frontières du temps et découvrir des architectures, des rites, des savoirs agricoles et des traditions orales transmis depuis des siècles, intacts et vivants.',
+    labels: {
+      sights:     '🏘️ Villages & ethnies à découvrir',
+      activities: '🌟 Expériences villageoises',
+      bestTime:   '🌍 Familles ethniques',
+      practical:  '📍 Comment visiter'
+    },
+    sights: [
+      'Villages Dan de Man — greniers coniques, masques et cases initiatiques',
+      'Villages Sénoufo de Korhogo — cases décorées et tisserands sur métier',
+      'Villages Baoulé du Centre — chefferies royales et dorures',
+      'Villages Dioula du Nord — architecture sahélienne en banco',
+      'Villages Adjoukrou de Dabou — construits sur les lagunes',
+      'Villages Krou et Bété de l\'Ouest — forêts sacrées et rites ancestraux'
+    ],
+    activities: [
+      'Cérémonie d\'accueil traditionnelle (cola, palabre et bénédiction)',
+      'Visite des cases initiatiques, greniers et bois sacrés',
+      'Initiation au tissage Sénoufo sur métier à tisser (Korhogo)',
+      'Participation aux travaux agricoles — cacao, igname ou manioc',
+      'Nuitée en famille d\'accueil dans un village rural',
+      'Soirée autour du feu avec conteurs griots et chants traditionnels'
+    ],
+    bestTime: 'Akan (Baoulé, Agni, Abron) au Centre et à l\'Est — Gour/Sénoufo au Nord — Krou (Bété, Wé, Dida) à l\'Ouest forestier — Mandé (Dioula, Malinké) au Nord-Ouest. Chaque famille : langue, architecture et rites distincts.',
+    practical: [
+      'Agences de tourisme solidaire à Abidjan — séjours éco-responsables',
+      'Association des Guides de Man — visites encadrées dans les villages Dan',
+      'Office du Tourisme de Korhogo — immersion Sénoufo organisée',
+      'Toujours se faire accompagner d\'un guide local — respecter les interdits'
+    ]
+  },
+
   // --- GASTRONOMIE ---
   attieke: {
     icon: '🍲',

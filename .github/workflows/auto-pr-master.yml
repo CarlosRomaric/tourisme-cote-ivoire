@@ -18,12 +18,16 @@ jobs:
       - name: Checkout du code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Historique complet pour git log
+          fetch-depth: 0
 
       - name: Créer la Pull Request
         id: pr
+        # PAT_TOKEN est nécessaire : GITHUB_TOKEN n'est pas autorisé à créer
+        # des PR par défaut. Créez un secret "PAT_TOKEN" dans :
+        # Settings → Secrets and variables → Actions → New repository secret
+        # Le token doit avoir les scopes : repo + workflow
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           BRANCH="${{ github.ref_name }}"
 
@@ -38,29 +42,27 @@ jobs:
           if [ -n "$PR_NUMBER" ]; then
             echo "PR #$PR_NUMBER déjà ouverte pour '$BRANCH' — mise à jour ignorée."
           else
-            # Lister les commits entre cette branche et master
             COMMITS=$(git log origin/master..HEAD --oneline 2>/dev/null \
               | head -15 \
               | sed 's/^/- /' \
               || echo "- (aucun commit détecté)")
 
-            # Générer le corps de la PR dans un fichier temporaire
             cat > /tmp/pr-body.md << EOF
-          ## Pull Request automatique
+## Pull Request automatique
 
-          | Champ | Valeur |
-          |---|---|
-          | **Branche source** | \`$BRANCH\` |
-          | **Cible** | \`master\` |
-          | **Auteur** | @${{ github.actor }} |
-          | **Commit déclencheur** | \`${{ github.sha }}\` |
+| Champ | Valeur |
+|---|---|
+| **Branche source** | \`$BRANCH\` |
+| **Cible** | \`master\` |
+| **Auteur** | @${{ github.actor }} |
+| **Commit déclencheur** | \`${{ github.sha }}\` |
 
-          ### Commits inclus
-          ${COMMITS}
+### Commits inclus
+${COMMITS}
 
-          ---
-          *Pull Request créée automatiquement par GitHub Actions suite au push sur \`$BRANCH\`.*
-          EOF
+---
+*Pull Request créée automatiquement par GitHub Actions suite au push sur \`$BRANCH\`.*
+EOF
 
             PR_URL=$(gh pr create \
               --title "Merge \`$BRANCH\` → master" \
@@ -74,27 +76,26 @@ jobs:
 
           echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
 
-      # L'approbation nécessite un PAT (Personal Access Token) car GitHub
-      # interdit l'auto-approbation avec le GITHUB_TOKEN natif.
-      # → Créer un secret "PAT_TOKEN" dans Settings > Secrets > Actions
       - name: Approuver la Pull Request
         if: steps.pr.outputs.number != ''
+        # Un second compte (ou token de bot) est nécessaire pour approuver.
+        # GitHub interdit qu'un token approuve sa propre PR.
+        # Utilisez un PAT d'un autre membre de l'équipe dans "APPROVER_TOKEN".
+        # Si absent, cette étape est ignorée silencieusement.
         env:
-          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GH_TOKEN: ${{ secrets.APPROVER_TOKEN }}
         run: |
           gh pr review "${{ steps.pr.outputs.number }}" \
             --approve \
             --body "Approuvée automatiquement par le workflow CI."
-        continue-on-error: true  # N'échoue pas si PAT_TOKEN absent
+        continue-on-error: true
 
       - name: Fusionner la Pull Request
         if: steps.pr.outputs.number != ''
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           gh pr merge "${{ steps.pr.outputs.number }}" \
             --merge \
             --delete-branch \
             --subject "Merge automatique : ${{ github.ref_name }} → master"
-        # Si des règles de protection de branche bloquent la fusion,
-        # remplacez GITHUB_TOKEN par PAT_TOKEN (admin du dépôt)
