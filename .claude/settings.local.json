@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\laragon\\\\www\\\\tourisme-cote-ivoire\" -Recurse -Include \"*.html\", \"*.css\", \"*.js\")",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)"
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"c:\\\\laragon\\\\www\\\\tourisme-cote-ivoire\" -Recurse | where { !$_.PSIsContainer } | Select-Object FullName)"
+    ]
+  }
+}
