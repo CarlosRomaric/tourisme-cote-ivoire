@@ -1,6 +1,5 @@
-name: Auto PR → Master
+name: Auto PR vers Master
 
-# Se déclenche sur chaque push vers une branche autre que master
 on:
   push:
     branches-ignore:
@@ -8,7 +7,7 @@ on:
 
 jobs:
   auto-pull-request:
-    name: Créer et fusionner la PR vers master
+    name: Creer et fusionner la PR vers master
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -20,18 +19,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Créer la Pull Request
+      - name: Creer la Pull Request
         id: pr
-        # PAT_TOKEN est nécessaire : GITHUB_TOKEN n'est pas autorisé à créer
-        # des PR par défaut. Créez un secret "PAT_TOKEN" dans :
-        # Settings → Secrets and variables → Actions → New repository secret
-        # Le token doit avoir les scopes : repo + workflow
         env:
           GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GH_ACTOR: ${{ github.actor }}
+          GH_SHA: ${{ github.sha }}
         run: |
           BRANCH="${{ github.ref_name }}"
 
-          # Vérifier si une PR ouverte existe déjà pour éviter les doublons
           PR_NUMBER=$(gh pr list \
             --head "$BRANCH" \
             --base master \
@@ -40,54 +36,43 @@ jobs:
             --jq '.[0].number // empty')
 
           if [ -n "$PR_NUMBER" ]; then
-            echo "PR #$PR_NUMBER déjà ouverte pour '$BRANCH' — mise à jour ignorée."
+            echo "PR #$PR_NUMBER deja ouverte pour '$BRANCH' — ignoree."
           else
             COMMITS=$(git log origin/master..HEAD --oneline 2>/dev/null \
               | head -15 \
               | sed 's/^/- /' \
-              || echo "- (aucun commit détecté)")
+              || echo "- (aucun commit detecte)")
 
-            cat > /tmp/pr-body.md << EOF
-## Pull Request automatique
-
-| Champ | Valeur |
-|---|---|
-| **Branche source** | \`$BRANCH\` |
-| **Cible** | \`master\` |
-| **Auteur** | @${{ github.actor }} |
-| **Commit déclencheur** | \`${{ github.sha }}\` |
-
-### Commits inclus
-${COMMITS}
-
----
-*Pull Request créée automatiquement par GitHub Actions suite au push sur \`$BRANCH\`.*
-EOF
+            {
+              printf '## Pull Request automatique\n\n'
+              printf '**Branche source :** `%s`\n' "$BRANCH"
+              printf '**Cible :** `master`\n'
+              printf '**Auteur :** @%s\n' "$GH_ACTOR"
+              printf '**Commit :** `%s`\n\n' "$GH_SHA"
+              printf '### Commits inclus\n%s\n\n' "$COMMITS"
+              printf '---\n*PR creee automatiquement par GitHub Actions.*\n'
+            } > /tmp/pr-body.md
 
             PR_URL=$(gh pr create \
-              --title "Merge \`$BRANCH\` → master" \
+              --title "Merge $BRANCH vers master" \
               --body-file /tmp/pr-body.md \
               --base master \
               --head "$BRANCH")
 
             PR_NUMBER=$(echo "$PR_URL" | grep -oE '[0-9]+$')
-            echo "PR #$PR_NUMBER créée : $PR_URL"
+            echo "PR #$PR_NUMBER creee : $PR_URL"
           fi
 
           echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
 
       - name: Approuver la Pull Request
         if: steps.pr.outputs.number != ''
-        # Un second compte (ou token de bot) est nécessaire pour approuver.
-        # GitHub interdit qu'un token approuve sa propre PR.
-        # Utilisez un PAT d'un autre membre de l'équipe dans "APPROVER_TOKEN".
-        # Si absent, cette étape est ignorée silencieusement.
         env:
           GH_TOKEN: ${{ secrets.APPROVER_TOKEN }}
         run: |
           gh pr review "${{ steps.pr.outputs.number }}" \
             --approve \
-            --body "Approuvée automatiquement par le workflow CI."
+            --body "Approuvee automatiquement par le workflow CI."
         continue-on-error: true
 
       - name: Fusionner la Pull Request
@@ -98,4 +83,4 @@ EOF
           gh pr merge "${{ steps.pr.outputs.number }}" \
             --merge \
             --delete-branch \
-            --subject "Merge automatique : ${{ github.ref_name }} → master"
+            --subject "Merge automatique : ${{ github.ref_name }} vers master"
