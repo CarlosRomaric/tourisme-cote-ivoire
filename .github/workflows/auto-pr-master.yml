@@ -1,0 +1,90 @@
+name: Auto PR vers Master
+
+on:
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  auto-pull-request:
+    name: Creer et fusionner la PR vers master
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Creer la Pull Request
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN || github.token }}
+          GH_ACTOR: ${{ github.actor }}
+          GH_SHA: ${{ github.sha }}
+        run: |
+          BRANCH="${{ github.ref_name }}"
+
+          PR_NUMBER=$(gh pr list \
+            --head "$BRANCH" \
+            --base master \
+            --state open \
+            --json number \
+            --jq '.[0].number // empty')
+
+          if [ -n "$PR_NUMBER" ]; then
+            echo "PR #$PR_NUMBER deja ouverte pour '$BRANCH' — ignoree."
+          else
+            COMMITS=$(git log origin/master..HEAD --oneline 2>/dev/null \
+              | head -15 \
+              | sed 's/^/- /' \
+              || echo "- (aucun commit detecte)")
+
+            {
+              echo "## Pull Request automatique"
+              echo ""
+              echo "**Branche source :** \`$BRANCH\`"
+              echo "**Cible :** \`master\`"
+              echo "**Auteur :** @$GH_ACTOR"
+              echo "**Commit :** \`$GH_SHA\`"
+              echo ""
+              echo "### Commits inclus"
+              echo "$COMMITS"
+              echo ""
+              echo "*PR creee automatiquement par GitHub Actions.*"
+            } > /tmp/pr-body.md
+
+            PR_URL=$(gh pr create \
+              --title "Merge $BRANCH vers master" \
+              --body-file /tmp/pr-body.md \
+              --base master \
+              --head "$BRANCH")
+
+            PR_NUMBER=$(echo "$PR_URL" | grep -oE '[0-9]+$')
+            echo "PR #$PR_NUMBER creee : $PR_URL"
+          fi
+
+          echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+
+      - name: Approuver la Pull Request
+        if: steps.pr.outputs.number != ''
+        env:
+          GH_TOKEN: ${{ secrets.APPROVER_TOKEN }}
+        run: |
+          gh pr review "${{ steps.pr.outputs.number }}" \
+            --approve \
+            --body "Approuvee automatiquement par le workflow CI."
+        continue-on-error: true
+
+      - name: Fusionner la Pull Request
+        if: steps.pr.outputs.number != ''
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN || github.token }}
+        run: |
+          gh pr merge "${{ steps.pr.outputs.number }}" \
+            --merge \
+            --delete-branch \
+            --subject "Merge automatique : ${{ github.ref_name }} vers master"

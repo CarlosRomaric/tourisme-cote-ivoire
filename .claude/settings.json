@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(Get-ChildItem -Path \"c:\\\\laragon\\\\www\\\\tourisme-cote-ivoire\" -Recurse | where { !$_.PSIsContainer } | Select-Object FullName)"
+      "PowerShell(Get-ChildItem -Path \"c:\\\\laragon\\\\www\\\\tourisme-cote-ivoire\" -Recurse | where { !$_.PSIsContainer } | Select-Object FullName)",
+      "Bash(Get-ChildItem \"c:\\\\laragon\\\\www\\\\tourisme-cote-ivoire\\\\.github\" -Recurse)"
     ]
   }
 }

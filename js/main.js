@@ -183,36 +183,272 @@ const destinationData = {
       'San-Pédro : hébergements variés pour tous les budgets',
       'Activités nautiques proposées par les clubs de plage'
     ]
+  },
+
+  // --- CULTURE & TRADITIONS ---
+  masques: {
+    icon: '🎭',
+    bgClass: 'bg-yellow',
+    title: 'Les Masques sacrés',
+    subtitle: 'Patrimoine vivant — Art rituel et spiritualité des peuples ivoiriens',
+    description: 'Les masques ivoiriens ne sont pas de simples objets d\'art : ce sont des entités spirituelles vivantes. Chaque masque incarne un esprit, un ancêtre ou une force de la nature. Sculptés dans des bois précieux et ornés de matières naturelles, ils sont au cœur des cérémonies initiatiques, funéraires et de fertilité des peuples Dan, Baoulé, Sénoufo et Wé.',
+    labels: {
+      sights:     '🎭 Masques emblématiques',
+      activities: '🌟 Cérémonies & rituels',
+      bestTime:   '🌍 Peuples & origines',
+      practical:  '📍 Où les découvrir'
+    },
+    sights: [
+      'Masque Dan (Yacouba) — masque coureur, gardien de la paix',
+      'Masque Baoulé — masque de danse d\'une grande finesse',
+      'Masque Kpélié (Sénoufo) — masque initiatique de la société Poro',
+      'Masque Gou (Wé/Guéré) — masque guerrier de l\'Ouest forestier',
+      'Masque Do (Dioula) — masque de protection communautaire',
+      'Masque Gbain — masque féminin de guérison'
+    ],
+    activities: [
+      'Danses des masques lors des fêtes villageoises (saison sèche)',
+      'Fête des Masques de Man — manifestation annuelle incontournable',
+      'Funérailles traditionnelles — sortie des masques ancestraux',
+      'Cérémonie d\'initiation Poro chez les Sénoufo (réservée aux initiés)',
+      'Atelier de sculpture de masques avec artisans Dan à Man'
+    ],
+    bestTime: 'Masques Dan et Guéré à l\'Ouest (Man, Man), Baoulé au Centre (Bouaké, Yamoussoukro), Sénoufo au Nord (Korhogo). Plus de 60 ethnies avec leurs propres masques et rites sacrés.',
+    practical: [
+      'Musée des Civilisations d\'Abidjan — plus grande collection nationale',
+      'Village de Man — artisans Dan et cérémonies authentiques',
+      'Marché des artisans de Korhogo — masques Sénoufo et bronzes',
+      'Galeries d\'art de Cocody (Abidjan) — pièces certifiées authentiques'
+    ]
+  },
+
+  musique: {
+    icon: '🎶',
+    bgClass: 'bg-orange',
+    title: 'Coupé-Décalé & Zouglou',
+    subtitle: 'Rythmes d\'Abidjan — Deux genres nés en Côte d\'Ivoire qui ont conquis l\'Afrique',
+    description: 'La Côte d\'Ivoire est l\'un des pays africains les plus influents sur la scène musicale mondiale. Le Zouglou, né dans les années 1990 dans les cités universitaires d\'Abidjan, porte les revendications sociales avec humour et dérision. Le Coupé-Décalé, explosif et festif, a conquis toute l\'Afrique francophone depuis les années 2000, né dans les boîtes de nuit parisiennes de la diaspora ivoirienne.',
+    labels: {
+      sights:     '🎵 Genres & artistes clés',
+      activities: '🌟 Expériences musicales',
+      bestTime:   '🌍 Histoire & origines',
+      practical:  '📍 Où vivre la scène'
+    },
+    sights: [
+      'Zouglou — né à l\'Université de Cocody, Abidjan (années 1990)',
+      'Coupé-Décalé — créé par Douk Saga et La Jet Set à Paris (2002)',
+      'Magic System — ambassadeurs mondiaux, "Premier Gaou" (2002)',
+      'DJ Arafat — légende incontestée du Coupé-Décalé (1986–2019)',
+      'Afrobeats ivoirien — Serge Beynaud, Josey, Siro',
+      'Nouchi — argot abidjanais omniprésent dans les paroles'
+    ],
+    activities: [
+      'Soirées dansantes dans les boîtes de nuit de Cocody et Zone 4',
+      'Concert live au Palais de la Culture d\'Abidjan (Avenue Terrasson)',
+      'Festival MASA — Marché des Arts du Spectacle d\'Abidjan (mars–avril)',
+      'Danser le Coupé-Décalé avec les locaux dans un maquis animé',
+      'Visite des studios d\'enregistrement à Yopougon'
+    ],
+    bestTime: 'Le Zouglou émerge en 1990 des campus comme cri social estudiantin. Le Coupé-Décalé naît en 2002 dans la diaspora ivoirienne à Paris avant de conquérir l\'Afrique entière via les vidéoclips.',
+    practical: [
+      'Maquis musicaux à Treichville et Yopougon — animations tous les soirs',
+      'Palais de la Culture — concerts et galas de grande envergure',
+      'Festival MASA (années paires, mars–avril) — vitrine africaine du spectacle',
+      'NCI TV et Trace Africa — émissions musicales ivoiriennes à suivre'
+    ]
+  },
+
+  villages: {
+    icon: '🏘️',
+    bgClass: 'bg-green',
+    title: 'Villages traditionnels',
+    subtitle: 'Plus de 60 ethnies — Une mosaïque culturelle vivante et préservée',
+    description: 'La Côte d\'Ivoire abrite plus de 60 groupes ethniques répartis en quatre grandes familles : Akan, Gour (Sénoufo/Voltaïque), Krou et Mandé. Visiter un village traditionnel, c\'est traverser les frontières du temps et découvrir des architectures, des rites, des savoirs agricoles et des traditions orales transmis depuis des siècles, intacts et vivants.',
+    labels: {
+      sights:     '🏘️ Villages & ethnies à découvrir',
+      activities: '🌟 Expériences villageoises',
+      bestTime:   '🌍 Familles ethniques',
+      practical:  '📍 Comment visiter'
+    },
+    sights: [
+      'Villages Dan de Man — greniers coniques, masques et cases initiatiques',
+      'Villages Sénoufo de Korhogo — cases décorées et tisserands sur métier',
+      'Villages Baoulé du Centre — chefferies royales et dorures',
+      'Villages Dioula du Nord — architecture sahélienne en banco',
+      'Villages Adjoukrou de Dabou — construits sur les lagunes',
+      'Villages Krou et Bété de l\'Ouest — forêts sacrées et rites ancestraux'
+    ],
+    activities: [
+      'Cérémonie d\'accueil traditionnelle (cola, palabre et bénédiction)',
+      'Visite des cases initiatiques, greniers et bois sacrés',
+      'Initiation au tissage Sénoufo sur métier à tisser (Korhogo)',
+      'Participation aux travaux agricoles — cacao, igname ou manioc',
+      'Nuitée en famille d\'accueil dans un village rural',
+      'Soirée autour du feu avec conteurs griots et chants traditionnels'
+    ],
+    bestTime: 'Akan (Baoulé, Agni, Abron) au Centre et à l\'Est — Gour/Sénoufo au Nord — Krou (Bété, Wé, Dida) à l\'Ouest forestier — Mandé (Dioula, Malinké) au Nord-Ouest. Chaque famille : langue, architecture et rites distincts.',
+    practical: [
+      'Agences de tourisme solidaire à Abidjan — séjours éco-responsables',
+      'Association des Guides de Man — visites encadrées dans les villages Dan',
+      'Office du Tourisme de Korhogo — immersion Sénoufo organisée',
+      'Toujours se faire accompagner d\'un guide local — respecter les interdits'
+    ]
+  },
+
+  // --- GASTRONOMIE ---
+  attieke: {
+    icon: '🍲',
+    bgClass: 'bg-orange',
+    title: 'Attiéké & Poisson braisé',
+    subtitle: 'Le plat national — Semoule de manioc et poisson grillé sur braises',
+    description: 'L\'attiéké est une semoule légère à base de manioc fermenté et râpé, pilier de la cuisine ivoirienne depuis des siècles. Associé à un poisson braisé sur braises de bois, relevé de piment et accompagné d\'oignons et tomates crus, ce duo emblématique se déguste à toute heure dans les maquis d\'Abidjan comme dans les villages les plus reculés du pays.',
+    labels: {
+      sights: '🥘 Ingrédients clés',
+      activities: '👨‍🍳 Variantes & accompagnements',
+      bestTime: '🌍 Origines',
+      practical: '🍽️ Où goûter'
+    },
+    sights: [
+      'Manioc fermenté et râpé (base de l\'attiéké)',
+      'Poisson thiof, maquereau ou barracuda braisé',
+      'Tomates fraîches et oignons crus',
+      'Piment frais ou piment en poudre',
+      'Huile végétale, sel et citron',
+      'Cube Maggi — assaisonnement incontournable'
+    ],
+    activities: [
+      'Garba — attiéké au thon (street food économique et savoureux)',
+      'Attiéké au poulet grillé ou au porc rôti',
+      'Attiéké sauce djoumblé (feuilles de gombo)',
+      'Attiéké salade — servi froid avec oignons et tomates',
+      'Repas complet avec alloco (plantain frit) en accompagnement'
+    ],
+    bestTime: 'Originaire des peuples Avikam et Adjoukrou des lagunes ivoiriennes (région de Dabou et Grand-Lahou). Aujourd\'hui exporté dans toute l\'Afrique de l\'Ouest et les diasporas.',
+    practical: [
+      'Maquis de Treichville et Adjamé — meilleur garba d\'Abidjan',
+      'Marché d\'Abobo — attiéké frais à emporter dès le matin',
+      'Restaurants populaires à Grand-Bassam et San-Pédro',
+      'Partout en Côte d\'Ivoire — moins de 500 FCFA le plat'
+    ]
+  },
+
+  saucegraine: {
+    icon: '🥜',
+    bgClass: 'bg-yellow',
+    title: 'Sauce Graine (Palmnoix)',
+    subtitle: 'La reine des sauces — Mijotée aux noix de palme pendant des heures',
+    description: 'La sauce graine est préparée à partir de noix de palme fraîches broyées et filtrées, mijotées lentement avec viandes et poissons fumés. Elle dévoile des arômes profonds, une texture onctueuse et un goût terroir unique. Chaque région du pays possède sa propre version, jalousement transmise de génération en génération.',
+    labels: {
+      sights: '🥘 Ingrédients clés',
+      activities: '👨‍🍳 Variantes & accompagnements',
+      bestTime: '🌍 Origines',
+      practical: '🍽️ Où goûter'
+    },
+    sights: [
+      'Noix de palme fraîches ou concentré de palmiste',
+      'Viande de bœuf, poulet fermier ou mouton',
+      'Crabes de mer ou poisson fumé entier',
+      'Aubergines africaines (garden eggs)',
+      'Feuilles de taro gboman',
+      'Piment, ail, oignons et cube d\'assaisonnement'
+    ],
+    activities: [
+      'Sauce graine aux crabes de mer (version côtière)',
+      'Sauce graine au poulet fermier (version de l\'intérieur)',
+      'Servie sur riz blanc, foufou d\'igname ou placali',
+      'Version végétarienne sans viande ni poisson',
+      'Sauce graine froide en accompagnement de l\'attiéké'
+    ],
+    bestTime: 'Originaire des régions forestières du Sud de la Côte d\'Ivoire. Plat de fête et du dimanche chez les peuples Krou, Bété et Wé de l\'Ouest ivoirien.',
+    practical: [
+      'Restaurants traditionnels dans les quartiers populaires d\'Abidjan',
+      'Maquis familiaux à Sassandra, San-Pédro et Gagnoa',
+      'Marchés hebdomadaires de Gagnoa et Soubré (région d\'origine)',
+      'Cuisinée en famille le dimanche — demandez à votre hôte !'
+    ]
+  },
+
+  alloco: {
+    icon: '🍌',
+    bgClass: 'bg-green',
+    title: 'Alloco & Kedjenou',
+    subtitle: 'Le snack des rues et le ragoût de fête — Deux classiques ivoiriens',
+    description: 'L\'alloco, banane plantain mûre frite dans l\'huile de palme jusqu\'à caramélisation, est le snack universel vendu à toute heure dans les rues d\'Abidjan. Le Kedjenou, lui, est un ragoût délicat de poulet ou de pintade mijoté dans une canari (pot en argile) scellé sans eau ni matière grasse — une technique ancestrale Baoulé qui concentre tous les arômes.',
+    labels: {
+      sights: '🥘 Ingrédients clés',
+      activities: '👨‍🍳 Variantes & accompagnements',
+      bestTime: '🌍 Origines',
+      practical: '🍽️ Où goûter'
+    },
+    sights: [
+      'Alloco : banane plantain bien mûre (jaune à taches noires)',
+      'Alloco : huile de palme rouge, piment, sel',
+      'Kedjenou : poulet fermier ou pintade entière',
+      'Kedjenou : tomates, aubergines africaines, gombos',
+      'Kedjenou : gingembre, ail, poivrons, feuilles de laurier',
+      'Kedjenou : canari (pot en argile — l\'ustensile authentique)'
+    ],
+    activities: [
+      'Alloco-œufs — alloco avec œufs au plat (breakfast ivoirien)',
+      'Alloco au poisson frit ou au poulet grillé',
+      'Kedjenou à la pintade — la version la plus traditionnelle',
+      'Kedjenou au poulet de brousse cuit en canari scellé',
+      'Déguster le Kedjenou avec du riz gras ou de l\'attiéké'
+    ],
+    bestTime: 'Alloco : snack d\'origine Akan, commun dans toute l\'Afrique de l\'Ouest depuis des siècles. Kedjenou : plat de cérémonie du peuple Baoulé du Centre de la Côte d\'Ivoire.',
+    practical: [
+      'Alloco : vendeurs ambulants partout à Abidjan (500–1 000 FCFA)',
+      'Restaurant Chez Tantie (Abidjan, Cocody) — Kedjenou réputé',
+      'Marchés de Bouaké et Yamoussoukro — Kedjenou traditionnel',
+      'Villages Baoulé autour de Toumodi — expérience authentique'
+    ]
   }
 };
 
-// Logique du modal destinations
-const modalOverlay = document.getElementById('modal-overlay');
-const modalHeader = document.getElementById('modal-header');
-const modalIcon = document.getElementById('modal-icon');
-const modalTitle = document.getElementById('modal-title');
-const modalSubtitle = document.getElementById('modal-subtitle');
-const modalDescription = document.getElementById('modal-description');
-const modalSights = document.getElementById('modal-sights');
-const modalActivities = document.getElementById('modal-activities');
-const modalBestTime = document.getElementById('modal-besttime');
-const modalPractical = document.getElementById('modal-practical');
+// Logique du modal
+const modalOverlay      = document.getElementById('modal-overlay');
+const modalHeader       = document.getElementById('modal-header');
+const modalIcon         = document.getElementById('modal-icon');
+const modalTitle        = document.getElementById('modal-title');
+const modalSubtitle     = document.getElementById('modal-subtitle');
+const modalDescription  = document.getElementById('modal-description');
+const modalSights       = document.getElementById('modal-sights');
+const modalActivities   = document.getElementById('modal-activities');
+const modalBestTime     = document.getElementById('modal-besttime');
+const modalPractical    = document.getElementById('modal-practical');
+const modalLabelSights    = document.getElementById('modal-label-sights');
+const modalLabelActivities = document.getElementById('modal-label-activities');
+const modalLabelBestTime  = document.getElementById('modal-label-besttime');
+const modalLabelPractical = document.getElementById('modal-label-practical');
 
-function openModal(destKey) {
-  const data = destinationData[destKey];
+const defaultLabels = {
+  sights:     '📍 À voir',
+  activities: '🎯 Activités',
+  bestTime:   '🗓️ Meilleur moment',
+  practical:  'ℹ️ Infos pratiques'
+};
+
+function openModal(key) {
+  const data = destinationData[key];
   if (!data) return;
 
-  modalIcon.textContent = data.icon;
-  modalTitle.textContent = data.title;
-  modalSubtitle.textContent = data.subtitle;
+  const labels = { ...defaultLabels, ...(data.labels || {}) };
+
+  modalIcon.textContent        = data.icon;
+  modalTitle.textContent       = data.title;
+  modalSubtitle.textContent    = data.subtitle;
   modalDescription.textContent = data.description;
+  modalHeader.className        = 'modal-header ' + data.bgClass;
 
-  modalHeader.className = 'modal-header ' + data.bgClass;
+  modalLabelSights.textContent    = labels.sights;
+  modalLabelActivities.textContent = labels.activities;
+  modalLabelBestTime.textContent  = labels.bestTime;
+  modalLabelPractical.textContent = labels.practical;
 
-  modalSights.innerHTML = data.sights.map(s => `<li>${s}</li>`).join('');
+  modalSights.innerHTML     = data.sights.map(s => `<li>${s}</li>`).join('');
   modalActivities.innerHTML = data.activities.map(a => `<li>${a}</li>`).join('');
   modalBestTime.textContent = data.bestTime;
-  modalPractical.innerHTML = data.practical.map(p => `<li>${p}</li>`).join('');
+  modalPractical.innerHTML  = data.practical.map(p => `<li>${p}</li>`).join('');
 
   modalOverlay.classList.add('active');
   document.body.style.overflow = 'hidden';

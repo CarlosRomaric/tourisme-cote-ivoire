@@ -94,6 +94,7 @@
         <div class="card-body">
           <h3>Les Masques sacrés</h3>
           <p>La Côte d'Ivoire est célèbre dans le monde entier pour ses masques Dan, Baoulé et Sénoufo. Ces œuvres d'art rituelles sont au cœur des cérémonies traditionnelles.</p>
+          <button class="btn-details" data-dest="masques">Voir détails</button>
         </div>
       </div>
 
@@ -102,6 +103,7 @@
         <div class="card-body">
           <h3>Coupé-Décalé & Zouglou</h3>
           <p>La Côte d'Ivoire a donné au monde le Coupé-Décalé et le Zouglou, deux styles musicaux qui ont conquis toute l'Afrique francophone et au-delà.</p>
+          <button class="btn-details" data-dest="musique">Voir détails</button>
         </div>
       </div>
 
@@ -110,6 +112,7 @@
         <div class="card-body">
           <h3>Villages traditionnels</h3>
           <p>Plus de 60 ethnies cohabitent harmonieusement. Visiter un village Dioula, Akan ou Krou, c'est plonger dans des modes de vie ancestraux préservés.</p>
+          <button class="btn-details" data-dest="villages">Voir détails</button>
         </div>
       </div>
 
@@ -134,6 +137,7 @@
         <div class="card-body">
           <h3>Attiéké & Poisson braisé</h3>
           <p>Le plat national par excellence : du manioc fermenté et râpé accompagné d'un poisson grillé avec une sauce pimentée. Incontournable !</p>
+          <button class="btn-details" data-dest="attieke">Voir détails</button>
         </div>
       </div>
 
@@ -142,6 +146,7 @@
         <div class="card-body">
           <h3>Sauce Graine (Palmnoix)</h3>
           <p>Mijotée à base de palmiste, cette sauce onctueuse accompagne le riz ou le foufou. Un régal pour les amateurs de cuisine authentique et épicée.</p>
+          <button class="btn-details" data-dest="saucegraine">Voir détails</button>
         </div>
       </div>
 
@@ -150,6 +155,7 @@
         <div class="card-body">
           <h3>Alloco & Kedjenou</h3>
           <p>L'alloco (banane plantain frite) est le snack incontournable des rues d'Abidjan. Le Kedjenou, poulet mijoté aux légumes dans une canari, est un symbole national.</p>
+          <button class="btn-details" data-dest="alloco">Voir détails</button>
         </div>
       </div>
 
@@ -224,21 +230,21 @@
         <p class="modal-description" id="modal-description"></p>
         <div class="modal-grid">
           <div class="modal-section">
-            <h4>📍 À voir</h4>
+            <h4 id="modal-label-sights"></h4>
             <ul id="modal-sights"></ul>
           </div>
           <div class="modal-section">
-            <h4>🎯 Activités</h4>
+            <h4 id="modal-label-activities"></h4>
             <ul id="modal-activities"></ul>
           </div>
         </div>
         <div class="modal-row">
           <div class="modal-section modal-section--highlight">
-            <h4>🗓️ Meilleur moment</h4>
+            <h4 id="modal-label-besttime"></h4>
             <p id="modal-besttime"></p>
           </div>
           <div class="modal-section modal-section--highlight">
-            <h4>ℹ️ Infos pratiques</h4>
+            <h4 id="modal-label-practical"></h4>
             <ul id="modal-practical"></ul>
           </div>
         </div>
