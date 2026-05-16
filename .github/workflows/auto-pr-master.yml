@@ -44,13 +44,17 @@ jobs:
               || echo "- (aucun commit detecte)")
 
             {
-              printf '## Pull Request automatique\n\n'
-              printf '**Branche source :** `%s`\n' "$BRANCH"
-              printf '**Cible :** `master`\n'
-              printf '**Auteur :** @%s\n' "$GH_ACTOR"
-              printf '**Commit :** `%s`\n\n' "$GH_SHA"
-              printf '### Commits inclus\n%s\n\n' "$COMMITS"
-              printf '---\n*PR creee automatiquement par GitHub Actions.*\n'
+              echo "## Pull Request automatique"
+              echo ""
+              echo "**Branche source :** \`$BRANCH\`"
+              echo "**Cible :** \`master\`"
+              echo "**Auteur :** @$GH_ACTOR"
+              echo "**Commit :** \`$GH_SHA\`"
+              echo ""
+              echo "### Commits inclus"
+              echo "$COMMITS"
+              echo ""
+              echo "*PR creee automatiquement par GitHub Actions.*"
             } > /tmp/pr-body.md
 
             PR_URL=$(gh pr create \
